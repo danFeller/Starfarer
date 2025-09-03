@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Enemy
+  - PlayerProjectile
+  - Asteroid
+  - DeathPlane
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - Ship
+  - Enemy
+  - Projectiles
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - User Interface
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3371130441
+    locked: 0
+  - name: NPCs
+    uniqueID: 1218232615
+    locked: 0
+  - name: PickUps
+    uniqueID: 2737544841
+    locked: 0
+  - name: Projectiles
+    uniqueID: 4020225001
+    locked: 0
+  - name: Player
+    uniqueID: 447261899
+    locked: 0
+  m_RenderingLayers:
+  - Default

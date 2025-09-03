@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
 
+// The following game was pushed to GitHub on September 3, 2025. This comment was made to ensure the workflow "flowed" and I could commit changes on the desktop Git Application.
+
 public class GameManager : MonoBehaviour
 {
     const float waveTime = 10f;
@@ -118,7 +120,7 @@ public class GameManager : MonoBehaviour
         else
         {
             return false;
-        }    
+        }
     }
 
     public List<LevelSO> GetLevels()

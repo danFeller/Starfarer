@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Level3
   m_EditorClassIdentifier: 
   level: 3
-  chaserMaxCount: 16
-  chaserSpawnChanceTop: 0
+  chaserMaxCount: 24
+  chaserSpawnChanceTop: 25
   chaserSpawnChanceRight: 100
   chaserSpawnChanceBottom: 0
   chaserSpawnChanceLeft: 100

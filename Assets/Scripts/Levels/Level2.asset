@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Level2
   m_EditorClassIdentifier: 
   level: 2
-  chaserMaxCount: 8
-  chaserSpawnChanceTop: 0
+  chaserMaxCount: 20
+  chaserSpawnChanceTop: 100
   chaserSpawnChanceRight: 0
-  chaserSpawnChanceBottom: 100
+  chaserSpawnChanceBottom: 10
   chaserSpawnChanceLeft: 0
   chaserMaxAmountToSpawn: 4
   asteroidMaxCount: 0

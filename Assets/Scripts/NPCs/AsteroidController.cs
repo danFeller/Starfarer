@@ -9,7 +9,7 @@ public class AsteroidController : EnemyController
     const float pathX = 18f;
     const float pathY = 18f;
 
-    [SerializeField] float enemySpeed = 3f;
+    [SerializeField] float enemySpeed = 40f;
 
     float guideX;
     float guideY;

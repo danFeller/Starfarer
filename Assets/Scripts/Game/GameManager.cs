@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     int currentWaveNumber = 0;
     bool isCurrentWaveChanging = true;
     bool isGameOver = false;
-    bool isGamePaused = false;
+    // bool isGamePaused = false;
 
     void Start()
     {
@@ -41,16 +41,16 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape) && !isGamePaused)
-        {
-            isGamePaused = true;
-            levelNumber.gameObject.SetActive(false);
-            scoreText.gameObject.SetActive(false);
-            starText.gameObject.SetActive(false);
-            retryButton.gameObject.SetActive(true);
-            mainMenuButton.gameObject.SetActive(true);
-            Time.timeScale = 0;
-        }
+        // if (Input.GetKeyUp(KeyCode.Escape) && !isGamePaused)
+        // {
+        //     isGamePaused = true;
+        //     levelNumber.gameObject.SetActive(false);
+        //     scoreText.gameObject.SetActive(false);
+        //     starText.gameObject.SetActive(false);
+        //     retryButton.gameObject.SetActive(true);
+        //     mainMenuButton.gameObject.SetActive(true);
+        //     Time.timeScale = 0;
+        // }
 
         if (!isGameOver)
         {

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using UnityEditor.Animations;
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class ShipController : MonoBehaviour

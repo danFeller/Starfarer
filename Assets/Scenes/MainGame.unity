@@ -911,6 +911,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b5581998b2d655d43826f30e57b12ba7, type: 2}
   - {fileID: 11400000, guid: eb1231a1e92fcf64095cb6d033cc6cc1, type: 2}
   - {fileID: 11400000, guid: 3f9d850b17da553449df3569016a3d7a, type: 2}
+  - {fileID: 11400000, guid: 36c2cf1c2a178a541b00080b337c6292, type: 2}
+  - {fileID: 11400000, guid: 1b82fa69f210680479cd03a2e71ba94e, type: 2}
   levelNumber: {fileID: 425446222}
   scoreText: {fileID: 391473211}
   starText: {fileID: 1890887232}
@@ -1117,7 +1119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -1292.5906, y: 926.2795}
+  m_AnchoredPosition: {x: -1292.5906, y: 831.15}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &425446222

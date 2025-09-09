@@ -1,10 +1,13 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BackgroundMovement : MonoBehaviour
 {
     [SerializeField] Slider slider;
+    [SerializeField] ShipController ship;
+
 
     float moveSpeed = 50f;
     float backgroundOffScreenThreshold = 90f;
@@ -24,7 +27,7 @@ public class BackgroundMovement : MonoBehaviour
 
     void Update()
     {
-        if (gm.AreAllEnemiesGone() && slider.value == 0 && isDoingWaveClearAnim)
+        if (gm.AreAllEnemiesGone() && slider.value == 0 && isDoingWaveClearAnim && !ship.IsDestroyed())
         {
             isDoingWaveClearAnim = false;
             StartCoroutine(DoColorFlash());

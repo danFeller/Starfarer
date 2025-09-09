@@ -28,7 +28,15 @@ public class GameManager : MonoBehaviour
     int currentWaveNumber = 0;
     bool isCurrentWaveChanging = true;
     bool isGameOver = false;
-    // bool isGamePaused = false;
+    bool isWaveCompleteSoundPlaying = false;
+
+
+
+    void Awake()
+    {
+        FindFirstObjectByType<BackgroundMusicManager>().PlayBackgroundMusic();        
+    }
+
 
     void Start()
     {
@@ -41,17 +49,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // if (Input.GetKeyUp(KeyCode.Escape) && !isGamePaused)
-        // {
-        //     isGamePaused = true;
-        //     levelNumber.gameObject.SetActive(false);
-        //     scoreText.gameObject.SetActive(false);
-        //     starText.gameObject.SetActive(false);
-        //     retryButton.gameObject.SetActive(true);
-        //     mainMenuButton.gameObject.SetActive(true);
-        //     Time.timeScale = 0;
-        // }
-
         if (!isGameOver)
         {
             levelNumber.text = "Level: " + levels[currentWaveNumber].level;
@@ -60,6 +57,7 @@ public class GameManager : MonoBehaviour
                 levelNumber.gameObject.SetActive(false);
                 scoreText.gameObject.SetActive(false);
                 starText.gameObject.SetActive(false);
+                slider.gameObject.SetActive(false);
                 retryButton.gameObject.SetActive(true);
                 mainMenuButton.gameObject.SetActive(true);
 
@@ -86,8 +84,14 @@ public class GameManager : MonoBehaviour
 
     void IsWaveOver()
     {
-        if (slider.value == 0 && AreAllEnemiesGone())
+        if (slider.value == 0 && AreAllEnemiesGone() && !ship.IsDestroyed())
         {
+            if (!isWaveCompleteSoundPlaying)
+            {
+                FindFirstObjectByType<SoundEffectManager>().PlayWaveCompleteSound();
+                isWaveCompleteSoundPlaying = true;
+            }
+            Debug.Log("WAVE COMPLETE");
             isCurrentWaveChanging = true;
             Invoke("StartNewWave", 4f);
         }
@@ -105,6 +109,7 @@ public class GameManager : MonoBehaviour
             if (isCurrentWaveChanging)
             {
                 isCurrentWaveChanging = false;
+                isWaveCompleteSoundPlaying = false;
                 slider.value = waveTime;
                 levels.RemoveAt(0);
             }

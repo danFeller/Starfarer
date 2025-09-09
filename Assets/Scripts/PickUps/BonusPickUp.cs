@@ -1,13 +1,17 @@
+using System.Collections;
 using UnityEngine;
 
 public class BonusPickUp : MonoBehaviour
 {
     [SerializeField] float rotationSpeed = 20f;
-    [SerializeField] int points = 50;
+
+    SoundEffectManager itemSound;
+    float soundDuration;
 
     void Start()
     {
         Invoke("Disappear", 5f);
+        itemSound = FindFirstObjectByType<SoundEffectManager>();
     }
 
     void Update()
@@ -23,9 +27,9 @@ public class BonusPickUp : MonoBehaviour
     void DoMovement()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        
+
     }
-    
+
     void DoRotation()
     {
         transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
@@ -35,13 +39,10 @@ public class BonusPickUp : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            itemSound.PlayItemGetSound();
             ScoreManager score = FindFirstObjectByType<ScoreManager>();
-            score.SetTotalScore(points);
-            score.SetStarScore(1);
+            score.SetStarScore(0.1f);
             Destroy(gameObject);
         }
     }
-
-
-
 }

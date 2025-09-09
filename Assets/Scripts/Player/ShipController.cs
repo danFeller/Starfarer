@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ShipController : MonoBehaviour
@@ -9,8 +10,11 @@ public class ShipController : MonoBehaviour
 
     [SerializeField] GameObject bullet;
     [SerializeField] bool allRange = false;
+    [SerializeField] Animator anim;
 
     Camera cam;
+    bool isInputEnabled = true;
+    bool isDeathSoundEffectPlaying = false;
 
     void Start()
     {
@@ -19,9 +23,12 @@ public class ShipController : MonoBehaviour
 
     void Update()
     {
-        DoMovement();
-        DoRotation();
-        DoFire();
+        if (isInputEnabled)
+        {
+            DoMovement();
+            DoRotation();
+            DoFire();
+        }
 
         cooldownIncrement += Time.deltaTime;
     }
@@ -65,9 +72,29 @@ public class ShipController : MonoBehaviour
     {
         if (other.tag == "Enemy" || other.tag == "Asteroid")
         {
-            Destroy(gameObject);
-            // Debug.Log("YOU DIED");
+            if (!isDeathSoundEffectPlaying)
+            {
+                FindFirstObjectByType<SoundEffectManager>().PlayDeathSoundEffect();
+                isDeathSoundEffectPlaying = true;
+            }
+
+            DoDeathAnimation();
+            StartCoroutine(Die());
         }
+    }
+
+
+    void DoDeathAnimation()
+    {
+        isInputEnabled = false;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        anim.SetBool("isDead", true);
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 
 }

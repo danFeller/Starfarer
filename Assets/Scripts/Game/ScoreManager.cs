@@ -7,7 +7,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI starText;
 
     int totalScore = 0;
-    int totalStarScore = 0;
+    float totalStarScore = 1f;
     GameManager gm;
 
     void Start()
@@ -21,16 +21,16 @@ public class ScoreManager : MonoBehaviour
         if (!gm.GetIsGameOver())
         {
             totalScore += score;
-            scoreText.text = "Score: " + totalScore;
+            scoreText.text = "Score: " + (totalScore * totalStarScore);
         }
     }
 
-    public void SetStarScore(int score)
+    public void SetStarScore(float score)
     {
         if (!gm.GetIsGameOver())
         {
-            totalStarScore += 1;
-            starText.text = "Stars: " + totalStarScore;
+            totalStarScore += score;
+            starText.text = "Multiplier: x" + totalStarScore;
         }
     }
 

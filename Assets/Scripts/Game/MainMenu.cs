@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -7,15 +8,38 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Button MainMenuButton;
     [SerializeField] Button QuitButton;
 
-    public void StartGame()
+    MenuSoundEffectManager menuSound;
+    float soundDuration;
+
+    void Start()
     {
-        SceneManager.LoadScene("MainGame");
+        menuSound = FindFirstObjectByType<MenuSoundEffectManager>();
     }
+
 
     public void QuitGame()
     {
-        Debug.Log("QUitting");
+        menuSound.PlayMenuSelectSound();
+        StartCoroutine(WaitToQuitGAme());
+    }
+    IEnumerator WaitToQuitGAme()
+    {
+        soundDuration = menuSound.GetMenuSelectSound().clip.length;
+        yield return new WaitForSeconds(soundDuration);
+        Debug.Log("Quitting");
         Application.Quit();
     }
 
+
+    public void LoadNewGame()
+    {
+        menuSound.PlayMenuSelectSound();
+        StartCoroutine(WaitToLoadNewGame());
+    }
+    IEnumerator WaitToLoadNewGame()
+    {
+        soundDuration = menuSound.GetMenuSelectSound().clip.length;
+        yield return new WaitForSeconds(soundDuration);
+        SceneManager.LoadScene("MainGame");
+    }
 }

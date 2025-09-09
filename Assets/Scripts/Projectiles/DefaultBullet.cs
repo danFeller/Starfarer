@@ -9,6 +9,7 @@ public class YellowBullet : MonoBehaviour
 
     void Awake()
     {
+        FindAnyObjectByType<SoundEffectManager>().PlayBulletSoundEffect();
         bulletSpawnPos = transform.position;
     }
 

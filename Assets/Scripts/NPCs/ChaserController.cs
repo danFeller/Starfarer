@@ -17,6 +17,11 @@ public class ChaserController : MonoBehaviour
 
     static int chaserCount;
 
+    void Awake()
+    {
+        incrementCounter();
+    }
+
     void Start()
     {
         enemySpeed = UnityEngine.Random.Range(20f, enemyMaxSpeed);
@@ -72,7 +77,7 @@ public class ChaserController : MonoBehaviour
                 Instantiate(bonus.gameObject, posOfDeath, Quaternion.identity).SetActive(true);
             }
 
-
+            FindAnyObjectByType<SoundEffectManager>().PlayEnemySoundEffect();
             Destroy(other.gameObject);
             Destroy(gameObject);
 
@@ -80,6 +85,7 @@ public class ChaserController : MonoBehaviour
         if (other.tag == "Asteroid" && asteroidTriggerIsRunning)
         {
             asteroidTriggerIsRunning = false;
+            FindAnyObjectByType<SoundEffectManager>().PlayEnemySoundEffect();
             decrementCounter();
             Destroy(gameObject);
         }

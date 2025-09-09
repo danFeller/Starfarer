@@ -15,6 +15,12 @@ public class AsteroidController : EnemyController
     float guideY;
     Vector3 spawnPos;
 
+    void Awake()
+    {
+        incrementCounter();
+    }
+
+
     void Start()
     {
         Identify();

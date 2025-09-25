@@ -8,6 +8,7 @@ TagManager:
   - PlayerProjectile
   - Asteroid
   - DeathPlane
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Ship
   - Enemy
   - Projectiles
-  - 
+  - EnemyProjectiles
   - 
   - 
   - 

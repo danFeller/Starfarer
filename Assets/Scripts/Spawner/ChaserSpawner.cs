@@ -47,7 +47,4 @@ public class ChaserSpawner : Spawner
         chaserSpawnChanceLeft = levels[0].chaserSpawnChanceLeft;
         chaserMaxAmountToSpawn = levels[0].chaserMaxAmountToSpawn;
     } 
-
-
-
 }

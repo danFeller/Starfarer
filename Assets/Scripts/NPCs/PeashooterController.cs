@@ -1,29 +1,27 @@
-using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DasherController : EnemyController
+public class PeashooterController : EnemyController
 {
-
-    [SerializeField] float enemySpeed = 18f;
+    [SerializeField] float enemySpeed = 20f;
+    [SerializeField] GameObject psBullet;
     [SerializeField] int points = 250;
     [SerializeField] GameObject bonus;
     [SerializeField] float bonusDropChance = 0.3f;
-    [SerializeField] Animator anim;
 
     static int dasherCount;
 
     const float pathX = 36f;
     const float pathY = 18f;
-    float duration = 3;
+    float duration = 2.5f;
     float timeTravelled = 0;
 
     Vector3 centerPoint;
     Vector3 spawnPos;
     Vector3 shipPosition;
 
-    bool hasShipPos = false;
     bool isAtCenterPoint = false;
+    bool hasFiredBullet = false;
     bool projectileTriggerIsRunning = true;
     bool asteroidTriggerIsRunning = true;
     bool deathPlaneTriggerIsRunning = true;
@@ -42,7 +40,7 @@ public class DasherController : EnemyController
         Identify();
         centerPoint = new Vector2(Random.Range(-pathX, pathX), Random.Range(-pathY, pathY));
         spawnPos = transform.position;
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
         ship = FindFirstObjectByType<ShipController>().gameObject;
     }
 
@@ -51,28 +49,20 @@ public class DasherController : EnemyController
     {
         if (transform.position != centerPoint && !isAtCenterPoint)
         {
-            Debug.Log("pathing to center");
             PathToCenter();
         }
         else
         {
             isAtCenterPoint = true;
-            anim.SetBool("isPausing", true);
-            Debug.Log("pathing to Ship");
-            PathToDirection();
+            FireBullet();
+            enemySpeed = 40f;
+            PathThroughSpawnPos();
         }
 
         DebugDrawNewBox(pathX, pathY);
     }
 
-
-    void PathToCenter()
-    {
-        rb.MovePosition(Vector2.Lerp(spawnPos, centerPoint, timeTravelled));
-        timeTravelled += Time.deltaTime / duration;
-    }
-
-    void PathToDirection()
+    void FireBullet()
     {
         if (ship.IsDestroyed())
         {
@@ -80,19 +70,43 @@ public class DasherController : EnemyController
         }
         else
         {
-            if (!hasShipPos)
+            if (!hasFiredBullet)
             {
                 shipPosition = ship.transform.position;
-                enemySpeed *= 3f;
-                hasShipPos = true;
-            }
-            float directionX = shipPosition.x - centerPoint.x;
-            float directionY = shipPosition.y - centerPoint.y;
 
-            Vector3 move = new Vector3(directionX, directionY, 0f).normalized * enemySpeed * Time.deltaTime;
-            transform.Translate(move);
+                float angleRad = Mathf.Atan2(shipPosition.y - transform.position.y, shipPosition.x - transform.position.x);
+                float angleDeg = (180 / Mathf.PI) * angleRad - 90; // Offset this by 90 Degrees
+                transform.rotation = Quaternion.Euler(0f, 0f, angleDeg);
+
+                Debug.Log(transform.rotation);
+                Instantiate(psBullet, transform.position, transform.rotation).SetActive(true);
+
+                hasFiredBullet = true;
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
         }
     }
+
+    void PathToCenter()
+    {
+        rb.MovePosition(Vector2.Lerp(spawnPos, centerPoint, timeTravelled));
+        timeTravelled += Time.deltaTime / duration;
+    }
+
+
+    void PathThroughSpawnPos()
+    {
+        float directionX = centerPoint.x - spawnPos.x;
+        float directionY = centerPoint.y - spawnPos.y;
+
+        Vector3 move = new Vector3(-directionX, -directionY, 0f).normalized * enemySpeed * Time.deltaTime;
+        transform.Translate(move);
+    }
+
+
+
+
+
 
     void OnTriggerEnter2D(Collider2D other)
     {

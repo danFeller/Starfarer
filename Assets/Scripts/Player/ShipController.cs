@@ -50,6 +50,7 @@ public class ShipController : MonoBehaviour
         if (allRange)
         {
             Vector3 mousePos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition);
+            
             float angleRad = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x);
             float angleDeg = (180 / Mathf.PI) * angleRad - 90; // Offset this by 90 Degrees
             transform.rotation = Quaternion.Euler(0f, 0f, angleDeg);
@@ -70,7 +71,7 @@ public class ShipController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy" || other.tag == "Asteroid")
+        if (other.tag == "Enemy" || other.tag == "Asteroid" || other.tag == "EnemyProjectile")
         {
             if (!isDeathSoundEffectPlaying)
             {
@@ -93,6 +94,7 @@ public class ShipController : MonoBehaviour
 
     IEnumerator Die()
     {
+        Debug.Log("Ship Has Died");
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }

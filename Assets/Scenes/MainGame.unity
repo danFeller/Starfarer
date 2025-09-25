@@ -938,7 +938,7 @@ Transform:
   m_GameObject: {fileID: 307252924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.3, y: -17.5, z: 0}
+  m_LocalPosition: {x: 30.2, y: 15.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1128,6 +1128,7 @@ GameObject:
   - component: {fileID: 391473210}
   - component: {fileID: 391473212}
   - component: {fileID: 391473211}
+  - component: {fileID: 391473213}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -1239,7 +1240,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -11.563019, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1253,6 +1254,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391473209}
   m_CullTransparentMesh: 1
+--- !u!114 &391473213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391473209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8a843d7144baf408a9cd3ed8dceeed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &425446220
 GameObject:
   m_ObjectHideFlags: 0
@@ -3740,6 +3753,8 @@ Transform:
   m_Children:
   - {fileID: 1279085046}
   - {fileID: 1796519531}
+  - {fileID: 1388967088}
+  - {fileID: 1630714831}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &827373924
@@ -4532,6 +4547,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203d3a7528c486043b46c18065fd988c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1388967087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1388967088}
+  - component: {fileID: 1388967089}
+  m_Layer: 0
+  m_Name: DasherSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1388967088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388967087}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 827373923}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1388967089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388967087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5a40978a2888745b46107eb746b6d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ship: {fileID: 307252924}
+  slider: {fileID: 728785457}
+  distanceFromCameraEdge: 40
+  spawnTime: 0.1
+  dasherEnemy: {fileID: 8954038145282260287, guid: 76e90f96e1910fc4c883fc44528b548b, type: 3}
+  dasherMaxCount: 0
+  dasherSpawnChanceTop: 0
+  dasherSpawnChanceRight: 0
+  dasherSpawnChanceBottom: 0
+  dasherSpawnChanceLeft: 0
+  dasherMaxAmountToSpawn: 0
 --- !u!1 &1424409921
 GameObject:
   m_ObjectHideFlags: 0
@@ -4740,6 +4810,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485338609}
   m_CullTransparentMesh: 1
+--- !u!1 &1630714830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1630714831}
+  - component: {fileID: 1630714832}
+  m_Layer: 0
+  m_Name: PeashooterSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1630714831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630714830}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 827373923}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1630714832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630714830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177a78eef37a28947a76a111b515d5bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ship: {fileID: 307252924}
+  slider: {fileID: 728785457}
+  distanceFromCameraEdge: 40
+  spawnTime: 0.1
+  peaShooterEnemy: {fileID: 4683984347874960923, guid: 8450fe46e4470e444b2bc6e1bea5b3fc, type: 3}
+  peaShooterMaxCount: 0
+  peaShooterSpawnChanceTop: 0
+  peaShooterSpawnChanceRight: 0
+  peaShooterSpawnChanceBottom: 0
+  peaShooterSpawnChanceLeft: 0
+  peaShooterMaxAmountToSpawn: 0
 --- !u!1 &1699581425
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ChaserController : MonoBehaviour
+public class ChaserController : EnemyController
 {
     [SerializeField] float enemyMaxSpeed = 50f;
     [SerializeField] int points = 100;
@@ -9,7 +9,9 @@ public class ChaserController : MonoBehaviour
     [SerializeField] float bonusDropChance = 0.2f;
 
     GameObject ship;
-    Vector2 shipPosition;
+
+    Vector3 shipPosition;
+
     float enemySpeed;
     bool projectileTriggerIsRunning = true;
     bool asteroidTriggerIsRunning = true;
@@ -24,16 +26,15 @@ public class ChaserController : MonoBehaviour
 
     void Start()
     {
-        enemySpeed = UnityEngine.Random.Range(20f, enemyMaxSpeed);
+        enemySpeed = Random.Range(20f, enemyMaxSpeed);
         ship = FindFirstObjectByType<ShipController>().gameObject;
     }
 
     void Update()
-    {
-        
+    {  
         if (ship.IsDestroyed())
         {
-            transform.Translate(0f, 0.2f, 0);
+            Flee();
         }
         else
         {
@@ -72,7 +73,7 @@ public class ChaserController : MonoBehaviour
             ScoreManager score = FindFirstObjectByType<ScoreManager>();
             score.SetTotalScore(points);
             decrementCounter();
-            if (UnityEngine.Random.Range(0f, 1f) <= bonusDropChance)
+            if (Random.Range(0f, 1f) <= bonusDropChance)
             {
                 Instantiate(bonus.gameObject, posOfDeath, Quaternion.identity).SetActive(true);
             }

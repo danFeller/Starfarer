@@ -21,4 +21,20 @@ public class LevelSO : ScriptableObject
     public float asteroidSpawnChanceBottom = 10f;
     public float asteroidSpawnChanceLeft = 10f;
     public float asteroidMaxAmountToSpawn = 1f;
+
+    [Header("Dasher Spawn Configuration")]
+    public int dasherMaxCount = 0;
+    public float dasherSpawnChanceTop = 50f;
+    public float dasherSpawnChanceRight = 10f;
+    public float dasherSpawnChanceBottom = 10f;
+    public float dasherSpawnChanceLeft = 50f;
+    public float dasherMaxAmountToSpawn = 3f;
+
+    [Header("Peashooter Spawn Configuration")]
+    public int peaShooterMaxCount = 0;
+    public float peaShooterSpawnChanceTop = 50f;
+    public float peaShooterSpawnChanceRight = 10f;
+    public float peaShooterSpawnChanceBottom = 10f;
+    public float peaShooterSpawnChanceLeft = 50f;
+    public float peaShooterMaxAmountToSpawn = 3f;
 }

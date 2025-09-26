@@ -58,12 +58,6 @@ public class ChaserController : EnemyController
         return new Vector3(distanceX, distanceY, 0f).normalized;
     }
 
-    // void PathToCurrentShipPosition()
-    // {
-    //     Debug.DrawLine(transform.position, shipPosition);
-    //     transform.Translate(shipPosition * Time.deltaTime * enemySpeed);
-    // }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         Vector3 posOfDeath = transform.position;

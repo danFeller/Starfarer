@@ -5,7 +5,6 @@ using UnityEngine;
 public class DasherController : EnemyController
 {
 
-    [SerializeField] float enemySpeed = 18f;
     [SerializeField] int points = 250;
     [SerializeField] GameObject bonus;
     [SerializeField] float bonusDropChance = 0.3f;
@@ -18,18 +17,8 @@ public class DasherController : EnemyController
     float duration = 3;
     float timeTravelled = 0;
 
-    Vector3 centerPoint;
-    Vector3 spawnPos;
-    Vector3 shipPosition;
-
-    bool hasShipPos = false;
-    bool isAtCenterPoint = false;
-    bool projectileTriggerIsRunning = true;
-    bool asteroidTriggerIsRunning = true;
-    bool deathPlaneTriggerIsRunning = true;
 
 
-    GameObject ship;
     Rigidbody2D rb;
 
     void Awake()
@@ -43,7 +32,6 @@ public class DasherController : EnemyController
         centerPoint = new Vector2(Random.Range(-pathX, pathX), Random.Range(-pathY, pathY));
         spawnPos = transform.position;
         rb = GetComponent<Rigidbody2D>();   
-        ship = FindFirstObjectByType<ShipController>().gameObject;
     }
 
     // Move to the target end position.

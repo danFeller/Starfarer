@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PeashooterController : EnemyController
 {
-    [SerializeField] float enemySpeed = 20f;
     [SerializeField] GameObject psBullet;
     [SerializeField] int points = 250;
     [SerializeField] GameObject bonus;
@@ -16,18 +15,7 @@ public class PeashooterController : EnemyController
     float duration = 2.5f;
     float timeTravelled = 0;
 
-    Vector3 centerPoint;
-    Vector3 spawnPos;
-    Vector3 shipPosition;
-
-    bool isAtCenterPoint = false;
     bool hasFiredBullet = false;
-    bool projectileTriggerIsRunning = true;
-    bool asteroidTriggerIsRunning = true;
-    bool deathPlaneTriggerIsRunning = true;
-
-
-    GameObject ship;
     Rigidbody2D rb;
 
     void Awake()
@@ -38,10 +26,10 @@ public class PeashooterController : EnemyController
     void Start()
     {
         Identify();
+        enemySpeed = 20f;
         centerPoint = new Vector2(Random.Range(-pathX, pathX), Random.Range(-pathY, pathY));
         spawnPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
-        ship = FindFirstObjectByType<ShipController>().gameObject;
     }
 
     // Move to the target end position.

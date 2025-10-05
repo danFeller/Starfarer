@@ -3,17 +3,14 @@ using UnityEngine;
 public class AsteroidController : EnemyController
 {
     static int asteroidCount;
-    bool deathPlaneTriggerIsRunning = true;
 
     //determines the set of points the asteroid travels across
     const float pathX = 18f;
     const float pathY = 18f;
 
-    [SerializeField] float enemySpeed = 40f;
 
     float guideX;
     float guideY;
-    Vector3 spawnPos;
 
     void Awake()
     {
@@ -24,6 +21,7 @@ public class AsteroidController : EnemyController
     void Start()
     {
         Identify();
+        enemySpeed = 40f;
         guideX = Random.Range(-pathX, pathX);
         guideY = Random.Range(-pathY, pathY);
         spawnPos = transform.position;

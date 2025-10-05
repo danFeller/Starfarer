@@ -8,15 +8,6 @@ public class ChaserController : EnemyController
     [SerializeField] GameObject bonus;
     [SerializeField] float bonusDropChance = 0.2f;
 
-    GameObject ship;
-
-    Vector3 shipPosition;
-
-    float enemySpeed;
-    bool projectileTriggerIsRunning = true;
-    bool asteroidTriggerIsRunning = true;
-    bool deathPlaneTriggerIsRunning = true;
-
     static int chaserCount;
 
     void Awake()
@@ -27,7 +18,6 @@ public class ChaserController : EnemyController
     void Start()
     {
         enemySpeed = Random.Range(20f, enemyMaxSpeed);
-        ship = FindFirstObjectByType<ShipController>().gameObject;
     }
 
     void Update()

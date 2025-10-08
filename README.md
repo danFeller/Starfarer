@@ -9,6 +9,7 @@ Current Most Recent Release - https://github.com/danFeller/Starfarer/releases/ta
 >> Chaser = 100 pts  
 >> Dasher = 250 pts  
 >> Peashooter = 250 pts  
+![](https://github.com/danFeller/Starfarer/blob/main/Gifs/readme_gameplay.gif)
 - There are different levels with different amounts of each enemy. Getting shot or touching an enemy is a GAME OVER.
 - There is a timer at the bottom of the screen. When that timer is up and all enemies on the screen are destroyed, you completed the level and move onto the next one.
 - When all levels are completed, you win. Try to score as high of a score as possible.

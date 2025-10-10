@@ -6,7 +6,9 @@ public class PeashooterController : EnemyController
     [SerializeField] GameObject psBullet;
     [SerializeField] int points = 250;
     [SerializeField] GameObject bonus;
+    [SerializeField] GameObject upgrade;
     [SerializeField] float bonusDropChance = 0.3f;
+    [SerializeField] float upgradeDropChance = 0.2f;
 
     static int dasherCount;
 
@@ -21,6 +23,7 @@ public class PeashooterController : EnemyController
     void Awake()
     {
         incrementCounter();
+        ship = FindFirstObjectByType<ShipController>().gameObject;
     }
 
     void Start()
@@ -60,7 +63,7 @@ public class PeashooterController : EnemyController
         {
             if (!hasFiredBullet)
             {
-                shipPosition = ship.transform.position;
+                setShipPosition();
 
                 float angleRad = Mathf.Atan2(shipPosition.y - transform.position.y, shipPosition.x - transform.position.x);
                 float angleDeg = (180 / Mathf.PI) * angleRad - 90; // Offset this by 90 Degrees
@@ -109,11 +112,30 @@ public class PeashooterController : EnemyController
             {
                 Instantiate(bonus.gameObject, posOfDeath, Quaternion.identity).SetActive(true);
             }
-
+            if (Random.Range(0f, 1f) <= upgradeDropChance)
+            {
+                Instantiate(upgrade.gameObject, posOfDeath, Quaternion.identity).SetActive(true);
+            }
             FindAnyObjectByType<SoundEffectManager>().PlayEnemySoundEffect();
             Destroy(other.gameObject);
             Destroy(gameObject);
-
+        }
+        if (other.tag == "PlayerPiercingProjectile" && projectilePiercingTriggerIsRunning)
+        {
+            projectilePiercingTriggerIsRunning = false;
+            ScoreManager score = FindFirstObjectByType<ScoreManager>();
+            score.SetTotalScore(points);
+            decrementCounter();
+            if (Random.Range(0f, 1f) <= bonusDropChance)
+            {
+                Instantiate(bonus.gameObject, posOfDeath, Quaternion.identity).SetActive(true);
+            }
+            if (Random.Range(0f, 1f) <= upgradeDropChance)
+            {
+                Instantiate(bonus.gameObject, posOfDeath, Quaternion.identity).SetActive(true);
+            }
+            FindAnyObjectByType<SoundEffectManager>().PlayEnemySoundEffect();
+            Destroy(gameObject);
         }
         if (other.tag == "Asteroid" && asteroidTriggerIsRunning)
         {

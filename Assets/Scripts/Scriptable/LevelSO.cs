@@ -37,4 +37,12 @@ public class LevelSO : ScriptableObject
     public float peaShooterSpawnChanceBottom = 10f;
     public float peaShooterSpawnChanceLeft = 50f;
     public float peaShooterMaxAmountToSpawn = 3f;
+
+    [Header("Item Pickup Spawn Configuration")]
+    public int itemMaxCount = 1;
+    public float itemSpawnChanceTop = 100f;
+    public float itemSpawnChanceRight = 100f;
+    public float itemSpawnChanceBottom = 100f;
+    public float itemSpawnChanceLeft = 100f;
+    public float itemMaxAmountToSpawn = 1f;
 }

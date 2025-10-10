@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 433a539e24d42d44c96f2eda7a52e220
+guid: b11787f291507384a967455eff6e6a23
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3452003437791708593
-    second: Rock_0
+      213: -5573692206294355990
+    second: PiercingBox_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rock_0
+      name: PiercingBox_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 21
-        width: 213
-        height: 213
+        x: 60
+        y: 76
+        width: 402
+        height: 356
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b5800156daf7ef20800000000000000
-      internalID: 3452003437791708593
+      spriteID: aef2674187446a2b0800000000000000
+      internalID: -5573692206294355990
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Rock_0: 3452003437791708593
+      PiercingBox_0: -5573692206294355990
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

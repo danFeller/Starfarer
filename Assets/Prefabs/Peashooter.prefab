@@ -205,4 +205,6 @@ MonoBehaviour:
   psBullet: {fileID: 3621566202814769959, guid: bfe9a229ca5827b4eb1958b9587cb21b, type: 3}
   points: 250
   bonus: {fileID: 799783905907803483, guid: 52952f28156a8504bb16af5337b73e8a, type: 3}
+  upgrade: {fileID: 3008404415470261053, guid: 42fd336d9d6807b4da081e669a91fe10, type: 3}
   bonusDropChance: 0.3
+  upgradeDropChance: 0.2

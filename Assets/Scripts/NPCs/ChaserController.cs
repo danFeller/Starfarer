@@ -28,7 +28,7 @@ public class ChaserController : EnemyController
         }
         else
         {
-            shipPosition = ship.transform.position;
+            setShipPosition();
         }
         PathToShipPosition();
     }
@@ -65,7 +65,20 @@ public class ChaserController : EnemyController
             FindAnyObjectByType<SoundEffectManager>().PlayEnemySoundEffect();
             Destroy(other.gameObject);
             Destroy(gameObject);
+        }
+        if (other.tag == "PlayerPiercingProjectile" && projectilePiercingTriggerIsRunning)
+        {
+            projectilePiercingTriggerIsRunning = false;
+            ScoreManager score = FindFirstObjectByType<ScoreManager>();
+            score.SetTotalScore(points);
+            decrementCounter();
+            if (Random.Range(0f, 1f) <= bonusDropChance)
+            {
+                Instantiate(bonus.gameObject, posOfDeath, Quaternion.identity).SetActive(true);
+            }
 
+            FindAnyObjectByType<SoundEffectManager>().PlayEnemySoundEffect();
+            Destroy(gameObject);
         }
         if (other.tag == "Asteroid" && asteroidTriggerIsRunning)
         {
@@ -74,7 +87,6 @@ public class ChaserController : EnemyController
             decrementCounter();
             Destroy(gameObject);
         }
-
         if (other.tag == "DeathPlane" && deathPlaneTriggerIsRunning)
         {
             deathPlaneTriggerIsRunning = false;

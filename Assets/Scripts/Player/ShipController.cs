@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,7 +9,9 @@ public class ShipController : MonoBehaviour
     [SerializeField] float cooldownDuration = 0.5f;
     float cooldownIncrement;
 
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject defaultBullet;
+    [SerializeField] GameObject shotgunBullet;
+    [SerializeField] GameObject pierceBullet;
     [SerializeField] bool allRange = false;
     [SerializeField] Animator anim;
 
@@ -16,9 +19,15 @@ public class ShipController : MonoBehaviour
     bool isInputEnabled = true;
     bool isDeathSoundEffectPlaying = false;
 
+    int powerLevel;
+    [SerializeField] bool isWieldingDefault = true;
+    [SerializeField] bool isWieldingPierce = false;
+    [SerializeField] bool isWieldingShotgun = false;
+
     void Start()
     {
         cam = Camera.main;
+        powerLevel = 1;
     }
 
     void Update()
@@ -27,19 +36,59 @@ public class ShipController : MonoBehaviour
         {
             DoMovement();
             DoRotation();
-            DoFire();
+            if (isWieldingDefault)
+            {
+                DoDefaultFire();
+            }
+            if (isWieldingShotgun)
+            {
+                DoShotgunFire();
+            }
+            if (isWieldingPierce)
+            {
+                DoPierceFire();
+            }
         }
 
         cooldownIncrement += Time.deltaTime;
     }
 
-    void DoFire()
+    void DoPierceFire()
+    {
+        if (Input.GetAxis("Fire1") == 1)
+        {
+            if (cooldownIncrement / 3f > cooldownDuration)
+            {
+                Instantiate(pierceBullet, transform.position, transform.rotation).SetActive(true);
+                cooldownIncrement = 0;
+            }
+        }
+    }
+
+    void DoShotgunFire()
     {
         if (Input.GetAxis("Fire1") == 1)
         {
             if (cooldownIncrement > cooldownDuration)
             {
-                Instantiate(bullet, transform.position, transform.rotation).SetActive(true);
+                Instantiate(shotgunBullet, transform.position, transform.rotation).SetActive(true);
+                for (int i = 1; i <= powerLevel; i++)
+                {
+                    Instantiate(shotgunBullet, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, 30f * i)).SetActive(true);
+                    Instantiate(shotgunBullet, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, -30f * i)).SetActive(true);
+                }
+                cooldownIncrement = 0;
+            }
+        }
+    }
+
+    void DoDefaultFire()
+    {
+        if (Input.GetAxis("Fire1") == 1)
+        {
+            if (cooldownIncrement * powerLevel > cooldownDuration)
+            {
+                Instantiate(defaultBullet, transform.position, transform.rotation).SetActive(true);
                 cooldownIncrement = 0;
             }
         }
@@ -50,7 +99,7 @@ public class ShipController : MonoBehaviour
         if (allRange)
         {
             Vector3 mousePos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition);
-            
+
             float angleRad = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x);
             float angleDeg = (180 / Mathf.PI) * angleRad - 90; // Offset this by 90 Degrees
             transform.rotation = Quaternion.Euler(0f, 0f, angleDeg);
@@ -82,6 +131,30 @@ public class ShipController : MonoBehaviour
             DoDeathAnimation();
             StartCoroutine(Die());
         }
+        if (other.tag == "ShotgunPickup")
+        {
+            Destroy(other.gameObject);
+            isWieldingDefault = false;
+            isWieldingPierce = false;
+            isWieldingShotgun = true;
+            Debug.Log("Picked Up Shotgun");
+        }
+        if (other.tag == "PiercingPickup")
+        {
+            Destroy(other.gameObject);
+            isWieldingDefault = false;
+            isWieldingPierce = true;
+            isWieldingShotgun = false;
+            Debug.Log("Picked Up Piercing");
+        }
+        if (other.tag == "DefaultPickup")
+        {
+            Destroy(other.gameObject);
+            isWieldingDefault = true;
+            isWieldingPierce = false;
+            isWieldingShotgun = false;
+            Debug.Log("Picked Up Default");
+        }
     }
 
 
@@ -99,4 +172,16 @@ public class ShipController : MonoBehaviour
         Destroy(gameObject);
     }
 
+
+    public void increasePower()
+    {
+        if (powerLevel < 3)
+        {
+            powerLevel += 1;
+        }
+    }
+    public int getPowerLevel()
+    {
+        return powerLevel;
+    }
 }

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -13,12 +14,9 @@ public class EnemyController : MonoBehaviour
     protected bool projectileTriggerIsRunning = true;
     protected bool asteroidTriggerIsRunning = true;
     protected bool deathPlaneTriggerIsRunning = true;
-
-    void Start()
-    {
-        ship = FindFirstObjectByType<ShipController>().gameObject;
-    }
-
+    protected bool projectilePiercingTriggerIsRunning = true;
+    
+    
     protected void Flee()
     {
         transform.Translate(0f, 0.2f, 0);
@@ -29,4 +27,15 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log("I'm a child called " + gameObject);
     }
+
+    protected void setShipPosition()
+    {
+        if (!ship.IsDestroyed())
+        {
+            Debug.Log("Setting Position...");
+            ship = FindFirstObjectByType<ShipController>().gameObject;
+            shipPosition = ship.transform.position;
+        }
+    }
+
 }

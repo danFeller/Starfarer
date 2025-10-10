@@ -20,7 +20,6 @@ public class AsteroidController : EnemyController
 
     void Start()
     {
-        Identify();
         enemySpeed = 40f;
         guideX = Random.Range(-pathX, pathX);
         guideY = Random.Range(-pathY, pathY);

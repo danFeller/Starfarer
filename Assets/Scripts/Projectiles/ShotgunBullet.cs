@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class DefaultBullet : Bullet
+public class ShotgunBullet : Bullet
 {
     void Awake()
     {
         FindAnyObjectByType<SoundEffectManager>().PlayBulletSoundEffect();
         bulletSpawnPos = transform.position;
         bulletVelocity = 120f;
-        bulletDistance = 45f;
+        bulletDistance = 20f;
     }
 
     void Update()
@@ -21,5 +21,4 @@ public class DefaultBullet : Bullet
             Destroy(gameObject);
         }    
     }
-
 }

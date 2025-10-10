@@ -1,4 +1,3 @@
-using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,7 +6,9 @@ public class DasherController : EnemyController
 
     [SerializeField] int points = 250;
     [SerializeField] GameObject bonus;
+    [SerializeField] GameObject upgrade;
     [SerializeField] float bonusDropChance = 0.3f;
+    [SerializeField] float upgradeDropChance = 0.1f;
     [SerializeField] Animator anim;
 
     static int dasherCount;
@@ -17,13 +18,12 @@ public class DasherController : EnemyController
     float duration = 3;
     float timeTravelled = 0;
 
-
-
     Rigidbody2D rb;
 
     void Awake()
     {
         incrementCounter();
+        ship = FindFirstObjectByType<ShipController>().gameObject;
     }
 
     void Start()
@@ -37,17 +37,23 @@ public class DasherController : EnemyController
     // Move to the target end position.
     void Update()
     {
-        if (transform.position != centerPoint && !isAtCenterPoint)
+        if (!ship.IsDestroyed())
         {
-            Debug.Log("pathing to center");
-            PathToCenter();
-        }
-        else
+            if (transform.position != centerPoint && !isAtCenterPoint)
+            {
+                Debug.Log("pathing to center");
+                PathToCenter();
+            }
+            else
+            {
+                isAtCenterPoint = true;
+                anim.SetBool("isPausing", true);
+                Debug.Log("pathing to Ship");
+                PathToDirection();
+            }
+        } else
         {
-            isAtCenterPoint = true;
-            anim.SetBool("isPausing", true);
-            Debug.Log("pathing to Ship");
-            PathToDirection();
+            Flee();
         }
 
         DebugDrawNewBox(pathX, pathY);
@@ -70,7 +76,7 @@ public class DasherController : EnemyController
         {
             if (!hasShipPos)
             {
-                shipPosition = ship.transform.position;
+                setShipPosition();
                 enemySpeed *= 3f;
                 hasShipPos = true;
             }
@@ -95,11 +101,31 @@ public class DasherController : EnemyController
             {
                 Instantiate(bonus.gameObject, posOfDeath, Quaternion.identity).SetActive(true);
             }
+            if (Random.Range(0f, 1f) <= upgradeDropChance)
+            {
+                Instantiate(upgrade.gameObject, posOfDeath, Quaternion.identity).SetActive(true);
+            }
 
             FindAnyObjectByType<SoundEffectManager>().PlayEnemySoundEffect();
             Destroy(other.gameObject);
             Destroy(gameObject);
-
+        }
+        if (other.tag == "PlayerPiercingProjectile" && projectilePiercingTriggerIsRunning)
+        {
+            projectilePiercingTriggerIsRunning = false;
+            ScoreManager score = FindFirstObjectByType<ScoreManager>();
+            score.SetTotalScore(points);
+            decrementCounter();
+            if (Random.Range(0f, 1f) <= bonusDropChance)
+            {
+                Instantiate(bonus.gameObject, posOfDeath, Quaternion.identity).SetActive(true);
+            }
+            if (Random.Range(0f, 1f) <= upgradeDropChance)
+            {
+                Instantiate(bonus.gameObject, posOfDeath, Quaternion.identity).SetActive(true);
+            }
+            FindAnyObjectByType<SoundEffectManager>().PlayEnemySoundEffect();
+            Destroy(gameObject);
         }
         if (other.tag == "Asteroid" && asteroidTriggerIsRunning)
         {

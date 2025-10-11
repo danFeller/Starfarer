@@ -37,3 +37,9 @@ MonoBehaviour:
   peaShooterSpawnChanceBottom: 50
   peaShooterSpawnChanceLeft: 10
   peaShooterMaxAmountToSpawn: 3
+  itemMaxCount: 1
+  itemSpawnChanceTop: 1
+  itemSpawnChanceRight: 1
+  itemSpawnChanceBottom: 1
+  itemSpawnChanceLeft: 1
+  itemMaxAmountToSpawn: 1

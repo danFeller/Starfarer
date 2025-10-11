@@ -26,10 +26,10 @@ MonoBehaviour:
   asteroidSpawnChanceLeft: 10
   asteroidMaxAmountToSpawn: 1
   dasherMaxCount: 6
-  dasherSpawnChanceTop: 50
+  dasherSpawnChanceTop: 0
   dasherSpawnChanceRight: 10
   dasherSpawnChanceBottom: 10
-  dasherSpawnChanceLeft: 50
+  dasherSpawnChanceLeft: 0
   dasherMaxAmountToSpawn: 3
   peaShooterMaxCount: 0
   peaShooterSpawnChanceTop: 50
@@ -37,3 +37,9 @@ MonoBehaviour:
   peaShooterSpawnChanceBottom: 10
   peaShooterSpawnChanceLeft: 50
   peaShooterMaxAmountToSpawn: 3
+  itemMaxCount: 1
+  itemSpawnChanceTop: 1
+  itemSpawnChanceRight: 1
+  itemSpawnChanceBottom: 1
+  itemSpawnChanceLeft: 1
+  itemMaxAmountToSpawn: 1

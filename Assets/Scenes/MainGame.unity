@@ -871,9 +871,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 40
   cooldownDuration: 0.25
-  bullet: {fileID: 6681489225225805173, guid: e69be97561db9184683fe143665bc5dd, type: 3}
+  defaultBullet: {fileID: 6681489225225805173, guid: e69be97561db9184683fe143665bc5dd, type: 3}
+  shotgunBullet: {fileID: 7398234027082459608, guid: 58870ce364f70224999beaa59f949b4e, type: 3}
+  pierceBullet: {fileID: 6579548369412229575, guid: 113090bf49fb5b943afbf13d39ed3ecd, type: 3}
   allRange: 1
   anim: {fileID: 307252931}
+  isWieldingDefault: 1
+  isWieldingPierce: 0
+  isWieldingShotgun: 0
 --- !u!212 &307252929
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1464,7 +1469,7 @@ SpriteRenderer:
   m_SortingLayerID: -923836855
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5756380681857427472, guid: a2c90854af7c302498e81c8df1b17232, type: 3}
+  m_Sprite: {fileID: -323585206016315004, guid: 71c4fda92fc29484eadebc1fcc6eceeb, type: 3}
   m_Color: {r: 0.39031354, g: 0.31273043, b: 0.4566037, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3710,7 +3715,7 @@ SpriteRenderer:
   m_SortingLayerID: -923836855
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6311352213680616822, guid: a3d23a6547092414a993a1b9f84daf15, type: 3}
+  m_Sprite: {fileID: 7952807660024898396, guid: 8c1890e2c5edb2a4293b8c4baf43373b, type: 3}
   m_Color: {r: 0.39031354, g: 0.31273043, b: 0.4566037, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3755,6 +3760,7 @@ Transform:
   - {fileID: 1796519531}
   - {fileID: 1388967088}
   - {fileID: 1630714831}
+  - {fileID: 1437046440}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &827373924
@@ -4677,6 +4683,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424409921}
   m_CullTransparentMesh: 1
+--- !u!1 &1437046439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1437046440}
+  - component: {fileID: 1437046441}
+  m_Layer: 0
+  m_Name: ItemSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1437046440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437046439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 827373923}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1437046441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437046439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed810a1d33e7db409bcaa9c0a888d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ship: {fileID: 307252924}
+  slider: {fileID: 728785457}
+  distanceFromCameraEdge: 40
+  spawnTime: 0.1
+  pickups:
+  - {fileID: 7562168447973304535, guid: 0973ed47e9c85cc40906ee13b3b70d0c, type: 3}
+  - {fileID: 4053631922361063517, guid: f2f12d73ef077bf4ba9a1686eb4260c7, type: 3}
+  - {fileID: 8771645398166799164, guid: 45f89c2ed60103a4ca9c55ec2b7b59f8, type: 3}
+  itemMaxCount: 0
+  itemSpawnChanceTop: 0
+  itemSpawnChanceRight: 0
+  itemSpawnChanceBottom: 0
+  itemSpawnChanceLeft: 0
+  itemMaxAmountToSpawn: 0
 --- !u!1 &1485338609
 GameObject:
   m_ObjectHideFlags: 0

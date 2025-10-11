@@ -108,7 +108,7 @@ MonoBehaviour:
   bonus: {fileID: 799783905907803483, guid: 52952f28156a8504bb16af5337b73e8a, type: 3}
   upgrade: {fileID: 3008404415470261053, guid: 42fd336d9d6807b4da081e669a91fe10, type: 3}
   bonusDropChance: 0.3
-  upgradeDropChance: 0.1
+  upgradeDropChance: 0.3
   anim: {fileID: -4231907443536315389}
 --- !u!95 &-4231907443536315389
 Animator:

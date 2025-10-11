@@ -57,7 +57,7 @@ public class ShipController : MonoBehaviour
     {
         if (Input.GetAxis("Fire1") == 1)
         {
-            if (cooldownIncrement / 3f > cooldownDuration)
+            if (cooldownIncrement * 0.8f > cooldownDuration)
             {
                 Instantiate(pierceBullet, transform.position, transform.rotation).SetActive(true);
                 cooldownIncrement = 0;
@@ -69,7 +69,7 @@ public class ShipController : MonoBehaviour
     {
         if (Input.GetAxis("Fire1") == 1)
         {
-            if (cooldownIncrement > cooldownDuration)
+            if (cooldownIncrement * 0.4f > cooldownDuration)
             {
                 Instantiate(shotgunBullet, transform.position, transform.rotation).SetActive(true);
                 for (int i = 1; i <= powerLevel; i++)

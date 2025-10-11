@@ -9,6 +9,12 @@ TagManager:
   - Asteroid
   - DeathPlane
   - EnemyProjectile
+  - ShotgunPickup
+  - PiercingPickup
+  - DefaultPickup
+  - Upgrade
+  - Bonus
+  - PlayerPiercingProjectile
   layers:
   - Default
   - TransparentFX

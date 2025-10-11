@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level3
   m_EditorClassIdentifier: 
   level: 3
-  chaserMaxCount: 18
+  chaserMaxCount: 12
   chaserSpawnChanceTop: 25
   chaserSpawnChanceRight: 100
   chaserSpawnChanceBottom: 0
@@ -26,10 +26,10 @@ MonoBehaviour:
   asteroidSpawnChanceLeft: 10
   asteroidMaxAmountToSpawn: 1
   dasherMaxCount: 6
-  dasherSpawnChanceTop: 50
-  dasherSpawnChanceRight: 10
-  dasherSpawnChanceBottom: 10
-  dasherSpawnChanceLeft: 50
+  dasherSpawnChanceTop: 0
+  dasherSpawnChanceRight: 50
+  dasherSpawnChanceBottom: 50
+  dasherSpawnChanceLeft: 0
   dasherMaxAmountToSpawn: 3
   peaShooterMaxCount: 2
   peaShooterSpawnChanceTop: 0
@@ -37,3 +37,9 @@ MonoBehaviour:
   peaShooterSpawnChanceBottom: 50
   peaShooterSpawnChanceLeft: 0
   peaShooterMaxAmountToSpawn: 1
+  itemMaxCount: 1
+  itemSpawnChanceTop: 1
+  itemSpawnChanceRight: 1
+  itemSpawnChanceBottom: 1
+  itemSpawnChanceLeft: 1
+  itemMaxAmountToSpawn: 1
